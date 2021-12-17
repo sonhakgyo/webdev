@@ -1,0 +1,16 @@
+깃허브와 VSC 연동으로 .JAVA를 잘 써오다가 최근 이클립스까지 WebClass 폴더를 함께 연동했다.
+그런데 여기서 문제가 발생했다. 무엇을 잘못 만졌는지 WebClass 폴더가 빨간색 텍스트가 되더니 .java를 실행할 수가 없게 되었다.
+뜨는 터미널 에러 문구로는 
+        Error: Could not find or load main class Java_folder.study.MethodTrim
+        Caused by: java.lang.ClassNotFoundException: Java_folder.study.MethodTrim 
+가 있다. 
+
+또한 
+        The project cannot be built until build path errors are resolved
+        Project 'WebClass' is missing required source folder: 'WebClass/jaavaa' 
+문제 문구가 있다.
+
+여기서 jaavaa 폴더는 오래 전까지는 아니지만 삭제한 지 꽤 된 폴더다.
+에러 문구로 구글링을 해봐도 이클립스에서 해결방안만 있다. 
+비주얼스튜디오코드에서 같은 문제로 고민한 사람의 글을 정독해보고 캐시를 삭제했지만 다른 문제가 있는 거 같다.
+아직 초보라서 더 구글링을 해봐야겠다. 그동안 .java 파일은 webdev 폴더에서 실행하고 공부하거나 이클립스에서 해야겠다.

@@ -1,0 +1,10 @@
+스프링 프레임워크 특징
+
+
+IoC(Inversion of Control)
+
+
+AOP(Aspect Oriented Programming, 관점지향 프로그래밍)
+
+
+Dependency Injection

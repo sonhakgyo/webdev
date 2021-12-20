@@ -31,7 +31,8 @@ JDBC execute, executeQuery, executeUpdate 메서드
         데이터베이스에서 데이터를 가져와 "결과 집합"을 반환한다. 이 메서드는 Select문에서만 실행하는 특징이 있다.
 
         executeQuery 메서드
-            public ResultSet executeQuert(String SQL문) throws SQLException;
+            public ResultSet executeQuery(String SQL문) throws SQLException;
 
         반환 값
             ResultSet : object that contains the data produced by the given query
+            ** 그럼 ResultSet을 import 해야 한다.

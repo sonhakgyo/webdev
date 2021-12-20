@@ -32,4 +32,4 @@ ID는 깃허브 아이디, PW는 복사한 토큰 값이다. 이제 커밋이 �
 
 
 토큰
-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
+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

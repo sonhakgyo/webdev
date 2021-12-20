@@ -1,0 +1,37 @@
+JDBC execute, executeQuery, executeUpdate 메서드
+
+    execute 
+        모든 유형의 SQL 문장과 함께 사용할 수 있다.
+        "boolean 값을 반환"한다. 반환 값이 true이면 getResultSet 메서드를 사용하여 결과 집합을 가져올 수 있다.
+        반대로 반환 값이 false이면 업데이트 개수 또는 결과가 없는 경우다.
+
+        execute 메서드는 Select, Insert, Update, Delete, DDL문을 실행할 수 있는 특징이 있다.
+
+        execute 메서드      
+            public boolean execute(String SQL문) throws SQLException;
+
+        반환 값
+            true  : result
+            false : update count or no result
+
+    executeUpdate
+        데이터베이스에서 데이터를 추가(Insert), 삭제(Delete), 수정(Update)하는 SQL문을 실행한다.
+        메서드의 반환 값은 해당 "SQL문 실행에 영향을 받는 행 수"를 반환한다.
+
+        ** 데이터베이스 개발 툴을 사용하다 보면 쿼리 실행 후 메세지로 affectedRows 값을 사용자에게 보여준다.
+        affctedRows 값은 사용자가 수행한 DML문이 영향을 끼친 행 수를 나타내는데 바로 executeUpdate 메서드의 반환 값이다. 
+
+        executeUpdate 메서드
+            public int executeUpdate(String SQL문) throws SQLException 
+
+        반환 값
+            int : row count(실행에 영향을 받은 행 수)
+
+    executeQuery
+        데이터베이스에서 데이터를 가져와 "결과 집합"을 반환한다. 이 메서드는 Select문에서만 실행하는 특징이 있다.
+
+        executeQuery 메서드
+            public ResultSet executeQuert(String SQL문) throws SQLException;
+
+        반환 값
+            ResultSet : object that contains the data produced by the given query

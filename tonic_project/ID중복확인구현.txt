@@ -1,0 +1,8 @@
+ID 중복확인 구현    
+    
+    MemberDAO에 메서드 추가
+        public boolean isExistID(String id) : 해당 ID가 있는지 확인한다.
+
+    script.js 추가수정 : checkID(), checkIDFromClose() 함수 추가 
+
+    

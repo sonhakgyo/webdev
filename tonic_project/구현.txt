@@ -52,3 +52,34 @@ ID 중복확인 구현
         --> 회원정보 수정 결과 페이지(JSP) 
         --> 로그아웃 페이지(JSP)
 
+정보 조회, 정보 수정
+
+    정보 조회 
+        1. 
+        2. /mypageView.jsp       : 비밀번호를 한 번 더 입력 받는 페이지
+        3. /mypageLogic.jsp      : 현재 로그인된 아이디와 비밀번호로 회원정보 조회
+        4. /mypageResultView.jsp : 개인정보 보여주고 원하는 내용을 수정하는 form 페이지
+
+    정보 수정
+        1. MemberDAO 메서드 추가
+            public boolean modify(MemberVO)  : 해당 회원정보 수정
+        2. modifyLogic.jsp 추가              : 개인정보 수정
+        3. modifyResultView.jsp 추가         : 수정결과 출력
+
+    관리자 페이지   
+        1. MemberDAO 메서드 추가
+            public ArrayList<MemberVO> getMemberList() : 해당 회원의 모든 정보 조회
+        2. adminpage.jsp 추가                          : 모든 회원 정보 조회
+        3. adminpageResultView.jsp 추가                : 조회 결과 출력
+
+        로그인 정보 가져오기
+        protected void doGet(request, response) {
+            MemberDAO dao = new MemberDAO();
+            MemberVO vo = null;
+            HttpSession session = request.getSession();
+            String id = (String)session.getAttribute("currentId"); // 현재 접속 중인 ID
+            String pw = request.getParameter("pw");                // 방금 입력한 비밀번호
+            vo = dao.selectMember(id, pw);   // selectMember(id, pw)에서 가져온다. 없다면 null을 리턴한다.
+            request.setAttribute("vo", vo);  // 가져온 vo를 vo라는 이름으로 request 영역에 넣는다.
+            request.getRequestDispatcher("조회결과출력페이지.jsp").forward(request, response);
+        }

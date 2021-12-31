@@ -1,0 +1,50 @@
+상품 DB 테이블 구현
+    product 테이블 
+        
+    상품테이블 칼럼
+        상품번호
+        상풍분류
+        이미지경로
+        브랜드
+        상품이름
+        할인가격
+        할인율
+        세부사항
+        원산지
+        유통기한
+        판매량
+        재고량
+
+
+// 상품등록 폼 파일 업로드 구현 -> MultipartRequest 라이브러리를 설치할 필요 有
+	// MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
+	// MultipartRequest(객체, 저장될 서버 경로, 파일 최대 크기, 인코딩 방식, 같은 이름의 파일명 방지 처리)
+
+	// 상품등록(아직 수정 중입니다)
+	public boolean insertProduct(HttpServletRequest request) throws IOException { 
+		ProductVO product = new ProductVO();
+		int result = 0;
+		
+		// String uploadURL = "절대경로";, 각 컴퓨터마다 경로가 다르기 때문에 수정해야 합니다.
+		String dir = "C:\\Users\\totls\\git\\Tonic-Shoppingmall-Project\\WebContent\\getImg"; 
+		int Size = 100*1024*1024; // 받아올 파일용량 제한 : 100MB
+		MultipartRequest multi = new MultipartRequest(request, dir, Size, "UTF-8", new DefaultFileRenamePolicy());
+		
+		con = JDBCUtil.connect();
+		try {
+			pstmt = con.prepareStatement(sql_insertP);
+			pstmt.setString(1, multi.getParameter("pcode"));
+			if(multi.getFilesystemName("pimg_src") != null) 
+				{ pstmt.setString(2, multi.getFilesystemName("pimg_src")); }
+			pstmt.setString(3, multi.getParameter("pbrand"));
+			pstmt.setString(4, multi.getParameter("pname"));
+			pstmt.setString(5, multi.getParameter("pprice"));
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			System.out.println("MemberDAO insertMember() : "+ e +" 에러");
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.disconnect(pstmt, con);
+		}
+		return result == 1;
+	}

@@ -1,0 +1,61 @@
+구성요소 메서드
+    구성요소.text()       : 구성요소 값을 반환, 태그는 포함하지 않는다.
+    구성요소.attr("속성") : 구성요소 속성 값을 반환한다. src, alt, width 등
+    구성요소.html()       : 구성요소 값을 반환, 태그를 포함한다.
+    구성요소.outerHtml()  : 태그와 값 모두를 포함한 구성요소를 반환한다.
+
+/* 경로 */
+import java.util.Iterator;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class Crawl {
+	public static void crawling() {
+        String url = "크롤링할 웹사이트 주소";
+        try {
+        	pstmt = con.prepareStatement(sql_insert);
+            int cnt = 0;
+
+            Document doc = Jsoup.connect(url).get(); // url의 HTML 코드를 가져온다.
+			Elements ex;
+            Elements ele = doc.select("div.goods_list_cont");
+            Document doc = Jsoup.connect(url).get();
+            Iterator<Element> itr = ele.select("div.item_basket_type>ul>li").iterator(); // NoSuchElementException 에러 발생
+			Iterator<Element> itr_brand = ele.select("span.item_brand").iterator(); // NoSuchElementException 에러 발생
+			Iterator<Element> itr_name = ele.select("strong.item_name").iterator();                // 정상
+			Iterator<Element> itr_price = ele.select("strong.item_price").iterator();              // 정상
+			Iterator<Element> itr_discount = ele.select("span.discount-rate").iterator();          // 정상
+			Iterator<Element> itr_img_src = ele.select("div.item_photo_box > a > img").iterator(); // 정상
+
+            while(itr_name.hasNext()) {
+				System.out.println(itr_name.next().text());
+			}
+            while(itr_price.hasNext()) {
+				System.out.println(itr_price.next().text());
+			}
+            while(itr_discount.hasNext()) {
+				System.out.println(itr_discount.next().text());
+			}
+            while(itr_img_src.hasNext()) {
+				System.out.println(itr_img_src.next().attr("abs:src")); // abs:가 붙으면 절대경로를 가져온다. 상대경로 = ("src") 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		    꼭 실행할 명령;
+		}
+    }
+}
+
+
+
+
+
+
+
+
+
+

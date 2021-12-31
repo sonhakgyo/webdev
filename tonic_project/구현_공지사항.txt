@@ -10,3 +10,9 @@
         4. boolean updateNotice(int num, String newTitle, String newCont) : num번 게시글의 제목, 본문 수정 
 
         5. boolean deleteNotice(int num) : num번 게시글 삭제
+
+        
+
+    nvl과 시퀀스
+
+        

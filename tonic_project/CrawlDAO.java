@@ -68,15 +68,15 @@ public class CrawlDAO {
 			for (int i = 0; i < 3; i++) {
 				Document doc = Jsoup.connect(url[i]).get(); // url의 HTML 코드를 가져온다.
 				Elements ele = doc.select("div.goods_list_cont"); // 그 중 div의 item_cont 클래스 태그로 둘러쌓인 부분을 가져온다. 
-				Iterator<Element> itr_img_src1 = ele.select("div.item_photo_box > a > img").iterator(); // 정상
-				Iterator<Element> itr_name1 = ele.select("strong.item_name").iterator(); // 정상
-				Iterator<Element> itr_price1 = ele.select("strong.item_price").iterator(); // 정상
+				Iterator<Element> itr_img_src = ele.select("div.item_photo_box > a > img").iterator(); // 정상
+				Iterator<Element> itr_name = ele.select("strong.item_name").iterator(); // 정상
+				Iterator<Element> itr_price = ele.select("strong.item_price").iterator(); // 정상
 				
-				while(itr_name1.hasNext()) {
-					pstmt = con.prepareStatement(sql_Insert[i]); // sql_InsertVITA, sql_InsertLACT, sql_InsertEYES
-					pstmt.setString(1, itr_img_src1.next().attr("abs:src"));
-					pstmt.setString(2, itr_name1.next().text());
-					pstmt.setString(3, itr_price1.next().text());
+				while(itr_name.hasNext()) {
+					pstmt = con.prepareStatement(sql_Insert[i]); // [sql_InsertVITA, sql_InsertLACT, sql_InsertEYES]
+					pstmt.setString(1, itr_img_src.next().attr("abs:src"));
+					pstmt.setString(2, itr_name.next().text());
+					pstmt.setInt(3, Integer.parseInt(itr_price.next().text().replaceAll("[,원]", ""))); // 이건 대박이다.
 					result += pstmt.executeUpdate();
 				}
 			}
